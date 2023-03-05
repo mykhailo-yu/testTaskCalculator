@@ -235,9 +235,14 @@ input[type="range"]:focus::-ms-fill-upper {
     height: initial;
     flex-direction: column-reverse;
     flex-grow: 1;
+    gap: 5px;
   }
   .output .bars .bar {
     height: 100px;
     width: 40px;
+  }
+  .price {
+    writing-mode: vertical-lr;
+    transform: scale(-1, -1);
   }
 }

@@ -95,20 +95,25 @@ function calc() {
         let storage;
         let transfer;
         let price;
-        if (storageValue > 75 && transferValue > 75 && isMulti === true) {
+        if (storageValue > 75 && isMulti === true && transferValue > 75) {
             storage = 0.06;
-            transfer = 0.02;
+            transfer = 0.02
             price = storage * (storageValue - 75) + transfer * (transferValue - 75);
         }
-        else if (storageValue > 75 && transferValue <= 75 && isMulti == false) {
+        else if (storageValue > 75 && isMulti == false && transferValue > 75) {
             storage = 0.03;
-            transfer = 0;
+            transfer = 0.02
+            price = storage * (storageValue - 75) + transfer * (transferValue - 75);
+        }
+        else if (storageValue > 75 && isMulti == false && transferValue <= 75) {
+            storage = 0.03;
+            transfer = 0
             price = storage * (storageValue - 75) + transfer * transferValue;
         }
-        else if (storageValue <= 75 && transferValue > 75 && isMulti == false) {
-            storage = 0;
-            transfer = 0.02;
-            price = storage * storageValue + transfer * (transferValue - 75);
+        else if (storageValue > 75 && isMulti == true && transferValue <= 75) {
+            storage = 0.03;
+            transfer = 0
+            price = storage * (storageValue - 75) + transfer * transferValue;
         }
         else {
             storage = 0;
