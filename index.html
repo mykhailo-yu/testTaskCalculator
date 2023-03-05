@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Price Calculator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="main">
+        <form class="pricing-form" autocomplete="off">
+          <div class="form-item storage">
+            <label for="storage-range"
+              >Storage: <b><span class="storage-text">500</span> GB</b></label
+            >
+            <div class="pricing-form_bar">
+              <div class="pricing-form_fill"></div>
+              <input
+                id="storage-range"
+                type="range"
+                min="0"
+                max="1000"
+                value="500"
+                step="1"
+              />
+            </div>
+          </div>
+          <div class="form-item transfer">
+            <label for="transfer-range"
+              >Transfer: <b><span class="transfer-text">500</span> GB</b></label
+            >
+            <div class="pricing-form_bar">
+              <div class="pricing-form_fill"></div>
+              <input
+                id="transfer-range"
+                type="range"
+                min="0"
+                max="1000"
+                value="500"
+                step="1"
+              />
+            </div>
+          </div>
+        </form>
+        <div class="output">
+          <div class="providers">
+            <div class="provider">
+              <div class="text">Backblaze</div>
+              <img src="img/backblaze.png" alt="" />
+            </div>
+            <div class="provider">
+              <div class="text">
+                <p>Bunny</p>
+                <div class="btns">
+                  <div class="input">
+                    <input type="radio" name="hddSSD" id="hdd" value="1" />
+                    <label for="hdd">HDD</label>
+                  </div>
+                  <div class="input">
+                    <input
+                      type="radio"
+                      name="hddSSD"
+                      id="ssd"
+                      value="2"
+                      checked
+                    />
+                    <label for="ssd">SSD</label>
+                  </div>
+                </div>
+              </div>
+              <img src="img/bunny.jfif" alt="" />
+            </div>
+            <div class="provider">
+              <div class="text">
+                <p>Scaleway</p>
+                <div class="btns">
+                  <div class="input">
+                    <input
+                      type="radio"
+                      name="multiSingle"
+                      id="multi"
+                      value="1"
+                    />
+                    <label for="multi">Multi</label>
+                  </div>
+                  <div class="input">
+                    <input
+                      type="radio"
+                      name="multiSingle"
+                      id="single"
+                      value="2"
+                      checked
+                    />
+                    <label for="single">Single</label>
+                  </div>
+                </div>
+              </div>
+              <img src="img/scaleway.png" alt="" />
+            </div>
+            <div class="provider">
+              <div class="text">Vultr</div>
+              <img src="img/vultr.png" alt="" />
+            </div>
+          </div>
+          <div class="bars">
+            <div class="provider-bar">
+              <span id="backblaze-bar" class="bar"></span>
+              <b class="price"><span id="backblazePrice">5</span>$</b>
+            </div>
+            <div class="provider-bar">
+              <span id="bunny-bar" class="bar"></span>
+              <b class="price"><span id="bunnyPrice">6</span>$</b>
+            </div>
+            <div class="provider-bar">
+              <span id="scaleway-bar" class="bar"></span>
+              <b class="price"><span id="scalewayPrice">3</span>$</b>
+            </div>
+            <div class="provider-bar">
+              <span id="vultr-bar" class="bar"></span>
+              <b class="price"><span id="vultrPrice">8</span>$</b>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>

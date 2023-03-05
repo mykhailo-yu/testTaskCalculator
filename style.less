@@ -1,0 +1,113 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.wrapper {
+  background-color: rgb(202, 195, 186);
+  height: 85vh;
+  padding-top: 100px;
+}
+.main {
+  
+  background-color: rgb(130, 119, 154);
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
+  width: 500px;
+  margin: 0 auto;
+  font-size: 16px;
+}
+.pricing-form {
+  display: flex;
+  gap: 50px;
+}
+.output {
+  display: flex;
+  gap: 10px;
+  .providers {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .provider {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      img {
+        height: 40px;
+      }
+      .input {
+        display: inline-block;
+      }
+    }
+  }
+  .bars {
+    border-left: 5px solid #000;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .provider-bar {
+      display: flex;
+      height: 40px;
+      align-items: center;
+      .bar {
+        background-color: rgb(185, 180, 180);
+        height: 100%;
+        transition: all 0.2s ease-in-out;
+      }
+      .smallest-price {
+        background-color: rgb(131, 3, 131);
+      }
+    }
+  }
+}
+@media (max-width: 768px) {
+    .main {
+        width: 80%;
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 50px;
+    }
+    .pricing-form {
+        justify-content: space-around;
+    }
+    .output {
+        flex-direction: column-reverse;
+        height: 500px;
+        .providers {
+            gap: initial;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            .provider {
+                width: 25%;
+                flex-direction: column-reverse;
+                .text {
+                    text-align: center;
+                }
+                .input {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 5px;
+                }
+            }
+        }
+        .bars {
+            gap: initial;
+            flex-direction: row;
+            border: none;
+            border-bottom: 5px solid #000;
+            justify-content: space-between;
+            .provider-bar {
+                height: initial;
+                flex-direction: column-reverse;
+                flex-grow: 1;
+            }
+            .bar {
+                
+                height: 100px;
+                width: 40px;
+            }
+        }
+    }
+}
