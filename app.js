@@ -71,11 +71,13 @@ single.oninput = () => {
 }
 // Main function for calculating prices
 function calc() {
+    let storageValue = inputStorage.value;
+    let transferValue = inputTransfer.value;
     let backblazePrice, bunnyPrice, scalewayPrice, vultrPrice;
     let backblaze = () => {
         const storage = 0.005;
         const transfer = 0.01;
-        let price = storage * inputStorage.value + transfer * inputTransfer.value;
+        let price = storage * storageValue + transfer * transferValue;
         if (price < 7) price = 7;
         return (price);
     }
@@ -85,33 +87,35 @@ function calc() {
             storage = 0.02;
         } else storage = 0.01;
         const transfer = 0.01;
-        let price = storage * inputStorage.value + transfer * inputTransfer.value;
+        let price = storage * storageValue + transfer * transferValue;
         if (price > 10) price = 10;
         return (price);
     }
     let scaleway = () => {
         let storage;
         let transfer;
-        if (inputStorage.value > 75 && isMulti === true) {
+        let price;
+        if (storageValue > 75 && isMulti === true) {
             storage = 0.06;
             transfer = 0.02;
+            price = storage * (storageValue - 75) + transfer * (transferValue - 75);
         }
-        else if (inputStorage.value > 75 && isMulti == false) {
+        else if (storageValue > 75 && isMulti == false) {
             storage = 0.03;
             transfer = 0.02;
+            price = storage * (storageValue - 75) + transfer * (transferValue - 75);
         }
         else {
             storage = 0;
             transfer = 0;
+            price = storage * storageValue + transfer * transferValue;
         }
-
-        let price = storage * inputStorage.value + transfer * inputTransfer.value;
         return (price);
     }
     let vultr = () => {
         const storage = 0.01;
         const transfer = 0.01;
-        let price = storage * inputStorage.value + transfer * inputTransfer.value;
+        let price = storage * storageValue + transfer * transferValue;
         if (price < 5) price = 5;
         return (price);
     }
@@ -120,7 +124,7 @@ function calc() {
     scalewayPrice = scaleway();
     vultrPrice = vultr();
 
-    // Знаходження найбільшої ціни
+    // Finding biggest and smallest price
     let prices = [];
     prices.push(backblazePrice);
     prices.push(bunnyPrice);
@@ -128,34 +132,34 @@ function calc() {
     prices.push(vultrPrice);
     let biggestPrice = Math.max(...prices);
     let smallestPrice = Math.min(...prices);
-
-    switch (smallestPrice) {
-        case backblazePrice:
-            backblazeBar.style.backgroundColor = "rgb(131, 3, 131)";
-            vultrBar.style.backgroundColor = "rgb(185, 180, 180)";
-            scalewayBar.style.backgroundColor = "rgb(185, 180, 180)";
-            bunnyBar.style.backgroundColor = "rgb(185, 180, 180)";
-            break;
-        case bunnyPrice:
-            backblazeBar.style.backgroundColor = "rgb(185, 180, 180)";
-            vultrBar.style.backgroundColor = "rgb(131, 3, 131)";
-            scalewayBar.style.backgroundColor = "rgb(185, 180, 180)";
-            bunnyBar.style.backgroundColor = "rgb(185, 180, 180)";
-            break;
-        case scalewayPrice:
-            backblazeBar.style.backgroundColor = "rgb(185, 180, 180)";
-            vultrBar.style.backgroundColor = "rgb(185, 180, 180)";
-            scalewayBar.style.backgroundColor = "rgb(131, 3, 131)";
-            bunnyBar.style.backgroundColor = "rgb(185, 180, 180)";
-            break;
-        case vultrPrice:
-            backblazeBar.style.backgroundColor = "rgb(185, 180, 180)";
-            vultrBar.style.backgroundColor = "rgb(185, 180, 180)";
-            scalewayBar.style.backgroundColor = "rgb(185, 180, 180)";
-            bunnyBar.style.backgroundColor = "rgb(131, 3, 131)";
-            break;
+    console.log(smallestPrice)
+    // Changing background color in bar with smallest price 
+    if (smallestPrice === backblazePrice) {
+        backblazeBar.style.backgroundColor = "rgb(131, 3, 131)";
+        bunnyBar.style.backgroundColor = "rgb(185, 180, 180)";
+        scalewayBar.style.backgroundColor = "rgb(185, 180, 180)";
+        vultrBar.style.backgroundColor = "rgb(185, 180, 180)";
+    }
+    else if (smallestPrice === bunnyPrice) {
+        backblazeBar.style.backgroundColor = "rgb(185, 180, 180)";
+        bunnyBar.style.backgroundColor = "rgb(131, 3, 131)";
+        scalewayBar.style.backgroundColor = "rgb(185, 180, 180)";
+        vultrBar.style.backgroundColor = "rgb(185, 180, 180)";
+    }
+    else if (smallestPrice === scalewayPrice) {
+        backblazeBar.style.backgroundColor = "rgb(185, 180, 180)";
+        bunnyBar.style.backgroundColor = "rgb(185, 180, 180)";
+        scalewayBar.style.backgroundColor = "rgb(131, 3, 131)";
+        vultrBar.style.backgroundColor = "rgb(185, 180, 180)";
+    }
+    else if (smallestPrice === vultrPrice) {
+        backblazeBar.style.backgroundColor = "rgb(185, 180, 180)";
+        bunnyBar.style.backgroundColor = "rgb(185, 180, 180)";
+        scalewayBar.style.backgroundColor = "rgb(185, 180, 180)";
+        vultrBar.style.backgroundColor = "rgb(131, 3, 131)";
     }
 
+    // Changing width of bars on desktop and height on mobile
     if (isMobile === false) {
         backblazeBar.style.width = `${backblazePrice * 80 / biggestPrice}%`;
         bunnyBar.style.width = `${bunnyPrice * 80 / biggestPrice}%`;
@@ -168,10 +172,11 @@ function calc() {
         scalewayBar.style.height = `${scalewayPrice * 95 / biggestPrice}%`;
         vultrBar.style.height = `${vultrPrice * 95 / biggestPrice}%`;
     }
-
+    //Round the prices
     backblazeTextPrice.innerHTML = backblazePrice.toFixed(2);
     bunnyTextPrice.innerHTML = bunnyPrice.toFixed(2);
     scalewayTextPrice.innerHTML = scalewayPrice.toFixed(2);
     vultrTextPrice.innerHTML = vultrPrice.toFixed(2);
 }
+// Сalling a function to calculate after the site is loaded
 calc(); 
