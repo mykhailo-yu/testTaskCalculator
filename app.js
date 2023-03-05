@@ -135,28 +135,28 @@ function calc() {
     console.log(smallestPrice)
     // Changing background color in bar with smallest price 
     if (smallestPrice === backblazePrice) {
-        backblazeBar.style.backgroundColor = "rgb(131, 3, 131)";
+        backblazeBar.style.backgroundColor = "red";
         bunnyBar.style.backgroundColor = "rgb(185, 180, 180)";
         scalewayBar.style.backgroundColor = "rgb(185, 180, 180)";
         vultrBar.style.backgroundColor = "rgb(185, 180, 180)";
     }
     else if (smallestPrice === bunnyPrice) {
         backblazeBar.style.backgroundColor = "rgb(185, 180, 180)";
-        bunnyBar.style.backgroundColor = "rgb(131, 3, 131)";
+        bunnyBar.style.backgroundColor = "orange";
         scalewayBar.style.backgroundColor = "rgb(185, 180, 180)";
         vultrBar.style.backgroundColor = "rgb(185, 180, 180)";
     }
     else if (smallestPrice === scalewayPrice) {
         backblazeBar.style.backgroundColor = "rgb(185, 180, 180)";
         bunnyBar.style.backgroundColor = "rgb(185, 180, 180)";
-        scalewayBar.style.backgroundColor = "rgb(131, 3, 131)";
+        scalewayBar.style.backgroundColor = "rgb(204, 0, 204)";
         vultrBar.style.backgroundColor = "rgb(185, 180, 180)";
     }
     else if (smallestPrice === vultrPrice) {
         backblazeBar.style.backgroundColor = "rgb(185, 180, 180)";
         bunnyBar.style.backgroundColor = "rgb(185, 180, 180)";
         scalewayBar.style.backgroundColor = "rgb(185, 180, 180)";
-        vultrBar.style.backgroundColor = "rgb(131, 3, 131)";
+        vultrBar.style.backgroundColor = "blue";
     }
 
     // Changing width of bars on desktop and height on mobile
