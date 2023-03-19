@@ -9,6 +9,7 @@ const single = document.querySelector('#single');
 const backblazeTextPrice = document.querySelector('#backblazePrice');
 const bunnyTextPrice = document.querySelector('#bunnyPrice');
 const scalewayTextPrice = document.querySelector('#scalewayPrice');
+const bar = document.querySelectorAll('.bar');
 const vultrTextPrice = document.querySelector('#vultrPrice');
 const backblazeBar = document.querySelector('#backblaze-bar');
 const bunnyBar = document.querySelector('#bunny-bar');
@@ -18,6 +19,21 @@ let isSsd = true, isMulti = false;
 let isMobile;
 if (window.innerWidth < 768) isMobile = true;
 else isMobile = false;
+window.addEventListener("resize", () => {
+    if (window.innerWidth < 768) {
+        isMobile = true
+        bar.forEach(element => {
+            element.style.width = "40px"  
+          });
+    }
+    else {
+        isMobile = false;
+        bar.forEach(element => {
+            element.style.height = "40px"  
+          });
+    };
+    calc();
+});
 // Event listeners for changing values of inputs by scroll wheel by 1 GB
 inputTransfer.addEventListener("wheel", (e) => {
     if (e.deltaY < 0) {
@@ -142,7 +158,7 @@ function calc() {
     prices.push(vultrPrice);
     let biggestPrice = Math.max(...prices);
     let smallestPrice = Math.min(...prices);
-    console.log(smallestPrice)
+
     // Changing background color in bar with smallest price 
     if (smallestPrice === backblazePrice) {
         backblazeBar.style.backgroundColor = "red";

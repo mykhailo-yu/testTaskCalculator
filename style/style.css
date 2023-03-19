@@ -99,10 +99,13 @@ input[type="range"]:focus::-ms-fill-upper {
   margin: 0;
   padding: 0;
 }
+body {
+  overflow: hidden;
+}
 .wrapper {
   background-color: #cac3ba;
-  height: 86vh;
-  padding-top: 100px;
+  height: 80vh;
+  padding: 100px 0;
 }
 .main {
   display: flex;
@@ -187,10 +190,22 @@ input[type="range"]:focus::-ms-fill-upper {
 .output .bars .provider-bar .smallest-price {
   background-color: #830383;
 }
-@media (max-width: 768px) {
+@media (max-height: 400px) {
+  body {
+    overflow: auto;
+  }
   .wrapper {
-    padding-top: 50px;
-    height: 95vh;
+    padding: 50px 0;
+    height: 100%;
+  }
+}
+@media (max-width: 768px) {
+  body {
+    overflow: auto;
+  }
+  .wrapper {
+    padding: 50px 0;
+    height: 100%;
   }
   .main {
     width: 80%;
@@ -210,7 +225,7 @@ input[type="range"]:focus::-ms-fill-upper {
     gap: initial;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
   }
   .output .providers .provider {
     width: 25%;
